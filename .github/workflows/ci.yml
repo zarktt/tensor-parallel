@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install ruff
+      - run: ruff check tensor_parallel/ tests/ bench/ examples/ --select E,F,W --ignore E501
+
+  # Multi-GPU tests need a self-hosted runner.
+  # test-gpu:
+  #   runs-on: [self-hosted, gpu]
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - run: pip install -e ".[dev]"
+  #     - run: torchrun --nproc_per_node=2 -m pytest tests/ -v
