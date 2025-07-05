@@ -6,3 +6,4 @@ build/
 .eggs/
 *.so
 .pytest_cache/
+.DS_Store

@@ -67,7 +67,7 @@ def main():
     )
 
     if rank == world_size - 1:
-        total_loss = sum(l.item() for l in losses)
+        total_loss = sum(loss_val.item() for loss_val in losses)
         print(f"[rank {rank}] total loss: {total_loss:.4f}")
 
     print(f"[rank {rank}] pipeline example done")

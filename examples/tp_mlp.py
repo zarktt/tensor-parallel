@@ -14,7 +14,7 @@ Usage:
 
 import torch
 import torch.nn as nn
-from tensor_parallel.utils import init_distributed, get_tp_rank, get_tp_world_size
+from tensor_parallel.utils import init_distributed, get_tp_rank
 from tensor_parallel.column_parallel import ColumnParallelLinear
 from tensor_parallel.row_parallel import RowParallelLinear
 
@@ -48,7 +48,6 @@ class TensorParallelMLP(nn.Module):
 def main():
     init_distributed()
     rank = get_tp_rank()
-    tp_size = get_tp_world_size()
 
     hidden = 4096
     intermediate = 11008  # llama-style

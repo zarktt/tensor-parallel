@@ -27,7 +27,7 @@ Benefits:
 import torch
 import torch.nn as nn
 import torch.distributed as dist
-from tensor_parallel.utils import get_tp_group, get_tp_rank, get_tp_world_size
+from tensor_parallel.utils import get_tp_group, get_tp_world_size
 
 
 class _ScatterToSequenceParallel(torch.autograd.Function):
